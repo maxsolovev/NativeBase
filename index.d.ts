@@ -520,7 +520,7 @@ declare module "native-base" {
 			noShadow?: boolean;
 
 			// Adding ListView properties
-			// dataSource?: ReactNative.ListViewDataSource; 
+			// dataSource?: ReactNative.ListViewDataSource;
 			enableEmptySections?: boolean;
 			initialListSize?: number;
 			onChangeVisibleRows?: (
@@ -630,7 +630,7 @@ declare module "native-base" {
          */
 		interface Icon {
 			name: string;
-			type?: "AntDesign" | "Entypo" | "EvilIcons" | "Feather" | "FontAwesome" | "FontAwesome5" | "Foundation" | "Ionicons" | "MaterialCommunityIcons" | "MaterialIcons" | "Octicons" | "SimpleLineIcons" | "Zocial";
+			type?: "AntDesign" | "Entypo" | "EvilIcons" | "Feather" | "FontAwesome" | "Foundation" | "Ionicons" | "MaterialCommunityIcons" | "MaterialIcons" | "Octicons" | "SimpleLineIcons" | "Zocial";
 			// TODO position attribute of ReactNative.FlexStyle hasn't another position values without "absolute" and "relative"
 			style?: any;
 			onPress?: (e?: any) => any;
