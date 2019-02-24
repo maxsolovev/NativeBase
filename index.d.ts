@@ -2,48 +2,52 @@ declare module "native-base" {
 	import * as React from "react";
 	import * as ReactNative from "react-native";
 
+	type RnViewStyleProp = ReactNative.StyleProp<ReactNative.ViewStyle>;
+	type RnTextStyleProp = ReactNative.StyleProp<ReactNative.TextStyle>;
+	type RnStatusBarStyleProp = ReactNative.StyleProp<ReactNative.StatusBarStyle>;
+
 	namespace NativeBase {
-		interface Text extends ReactNative.TextProperties {
+		interface Text extends ReactNative.TextProps {
 			note?: boolean;
 			uppercase?: boolean;
 		}
 
-		interface Switch extends ReactNative.SwitchProperties { }
+    interface Switch extends ReactNative.SwitchProps {}
 
-		interface View extends ReactNative.ViewProperties {
+		interface View extends ReactNative.ViewProps {
 			padder?: boolean;
 		}
 
-		interface Picker extends ReactNative.PickerProperties {
+		interface Picker extends ReactNative.PickerProps {
 			mode?: "dialog" | "dropdown";
 			supportedOrientations?: "portrait" | "landscape"
 			iosHeader?: string;
 			inlineLabel?: boolean;
 			headerBackButtonText?: string;
 			placeholder?: string;
-			placeholderStyle?: ReactNative.TextStyle;
-			textStyle?: ReactNative.TextStyle;
-			style?: ReactNative.TextStyle;
+			placeholderStyle?: RnTextStyleProp;
+			textStyle?: RnTextStyleProp;
+			style?: RnTextStyleProp;
 			iosIcon?: React.ReactElement<NativeBase.Icon>;
 			note?: boolean;
 			placeholderIconColor?: string;
-			itemTextStyle?: ReactNative.TextStyle;
-			headerStyle?: ReactNative.ViewStyle;
-			headerTitleStyle?: ReactNative.TextStyle;
-			headerBackButtonTextStyle?: ReactNative.TextStyle;
-			modalStyle?: ReactNative.ViewStyle;
+			itemTextStyle?: RnTextStyleProp;
+			headerStyle?: RnViewStyleProp;
+			headerTitleStyle?: RnTextStyleProp;
+			headerBackButtonTextStyle?: RnTextStyleProp;
+			modalStyle?: RnViewStyleProp;
 			renderHeader?: (backAction: any) => React.ReactElement<any>;
 		}
 
-		interface H1 extends ReactNative.TextProperties { }
+		interface H1 extends ReactNative.TextProps {}
 		/**
          * see Widget Text.js
          */
-		interface H2 extends ReactNative.TextProperties { }
+		interface H2 extends ReactNative.TextProps {}
 		/**
          * see Widget Text.js
          */
-		interface H3 extends ReactNative.TextProperties { }
+		interface H3 extends ReactNative.TextProps {}
 		/**
          * see Widget Text.js
          */
@@ -55,7 +59,7 @@ declare module "native-base" {
 			info?: boolean;
 		}
 
-		interface Badge extends ReactNative.ViewProperties, BsStyle { }
+		interface Badge extends ReactNative.ViewProps, BsStyle {}
 		/**
          * see Widget CardSwiper.js
          */
@@ -96,7 +100,7 @@ declare module "native-base" {
              * Default: regular
              */
 			rounded?: boolean;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 			/**
              * It is advisable to use hasTabs prop with Header while using Tab
              */
@@ -105,7 +109,7 @@ declare module "native-base" {
 			hasSubtitle?: boolean;
 			span?: boolean;
 			androidStatusBarColor?: string;
-			iosBarStyle?: ReactNative.StatusBarStyle;
+			iosBarStyle?: RnStatusBarStyleProp;
 			hasSegment?: boolean;
 			translucent?: boolean;
 			transparent?: boolean;
@@ -113,40 +117,40 @@ declare module "native-base" {
 		}
 
 		interface Left {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		interface Body {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		interface Right {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		/**
          * see Widget FooterTab.js
          */
 		interface FooterTab {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 		/**
          * see Widget Footer.js
          */
 		interface Footer {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 		/**
          * see Widget Title.js
          */
 		interface Title {
-			style?: ReactNative.TextStyle;
+			style?: RnTextStyleProp;
 		}
 		/**
          * see Widget Subtitle/index.js
          */
 		interface Subtitle {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 		/**
          * see Widget Container.js
@@ -156,7 +160,7 @@ declare module "native-base" {
              * The theme prop can be applied to any component of NativeBase.
              */
 			theme?: Object;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 		/**
          * see Widget Content.js
@@ -173,23 +177,23 @@ declare module "native-base" {
 			enableResetScrollToCoords?: boolean;
 			contentOffset?: Object;
 			scrollEnabled?: boolean;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			contentContainerStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
+			contentContainerStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
 			keyboardShouldPersistTaps?: string;
 			keyboardDismissMode?: string;
 		}
 		/**
          * see Widget Button.js
          */
-		interface Button extends ReactNative.TouchableOpacityProperties, BsStyle {
+		interface Button extends ReactNative.TouchableOpacityProps, BsStyle {
 			/**
              * Defines button style
              */
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 			/**
              * Defines button text style
              */
-			textStyle?: ReactNative.TextStyle;
+			textStyle?: RnTextStyleProp;
 			/**
              * Block level button
              */
@@ -263,12 +267,16 @@ declare module "native-base" {
              */
 			first?: boolean;
 			last?: boolean;
+			/**
+             * Adds necessary padding when Text button defined in Left / Right of Header (iOS)
+             */
+			hasText?: boolean;
 		}
 		/**
 
          * see Widget List.js
          */
-		interface List extends ReactListViewProperties {
+		interface List extends ReactListViewProps {
 			listBorderColor?: string;
 			listDividerBg?: string;
 			listNoteColor?: string;
@@ -313,7 +321,7 @@ declare module "native-base" {
 		/**
          * see Widget ListItem.js
          */
-		interface ListItem extends ReactNative.TouchableOpacityProperties {
+		interface ListItem extends ReactNative.TouchableOpacityProps {
 			header?: boolean;
 			noBorder?: boolean;
 			noIndent?: boolean;
@@ -348,18 +356,18 @@ declare module "native-base" {
              * [android] colored ripple effect
              */
 			androidRippleColor?: string;
-			touchableHighlightStyle?: ReactNative.ViewStyle;
+			touchableHighlightStyle?: RnViewStyleProp;
 		}
 
 		interface Separator {
 			bordered?: boolean;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		/**
          * see Widget CardItem.js
          */
-		interface CardItem extends ReactNative.TouchableOpacityProperties {
+		interface CardItem extends ReactNative.TouchableOpacityProps {
 			header?: boolean;
 			footer?: boolean;
 			cardBody?: boolean;
@@ -367,11 +375,11 @@ declare module "native-base" {
 			bordered?: boolean;
 		}
 		/**
-         * Override React ListViewProperties
+         * Override React ListViewProps
          */
-		interface ReactListViewProperties
-			extends ReactNative.ScrollViewProperties,
-			React.Props<ReactNative.ListView> {
+		interface ReactListViewProps
+			extends ReactNative.ScrollViewProps,
+				React.Props<ReactNative.ListView> {
 			/**
              * Flag indicating whether empty section headers should be rendered.
              * In the future release empty section headers will be rendered by
@@ -465,8 +473,8 @@ declare module "native-base" {
              * Defaults to returning a ScrollView with the given props.
              */
 			renderScrollComponent?: (
-				props: ReactNative.ScrollViewProperties
-			) => React.ReactElement<ReactNative.ScrollViewProperties>;
+				props: ReactNative.ScrollViewProps
+			) => React.ReactElement<ReactNative.ScrollViewProps>;
 
 			/**
              * (sectionData, sectionID) => renderable
@@ -512,10 +520,10 @@ declare module "native-base" {
 		/**
          * see Widget Card.js
          */
-		interface Card extends ReactNative.ViewProperties {
+		interface Card extends ReactNative.ViewProps {
 			dataArray?: Array<any>;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			ref?: React.Ref<ReactNative.ViewProperties | ReactListViewProperties>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
+			ref?: React.Ref<ReactNative.ViewProperties | ReactNative.ListViewProperties>;
 			transparent?: boolean;
 			noShadow?: boolean;
 
@@ -539,7 +547,7 @@ declare module "native-base" {
 				rowID: string | number,
 				highlightRow?: boolean
 			) => React.ReactElement<any>;
-			renderScrollComponent?: (props: ReactNative.ScrollViewProperties) => React.ReactElement<ReactNative.ScrollViewProperties>;
+			renderScrollComponent?: (props: ReactNative.ScrollViewProps) => React.ReactElement<ReactNative.ScrollViewProps>;
 			renderSectionHeader?: (sectionData: any, sectionId: string | number) => React.ReactElement<any>;
 			renderSeparator?: (
 				sectionID: string | number,
@@ -553,17 +561,17 @@ declare module "native-base" {
 		/**
          * react-native-easy-grid
          */
-		interface Grid extends ReactNative.ViewProperties { }
-		interface Row extends ReactNative.ViewProperties {
+		interface Grid extends ReactNative.ViewProps {}
+		interface Row extends ReactNative.ViewProps {
 			size?: number;
 		}
-		interface Col extends ReactNative.ViewProperties {
+		interface Col extends ReactNative.ViewProps {
 			size?: number;
 		}
 		/**
          * see Widget InputGroup.js
          */
-		interface InputGroup extends ReactNative.ViewProperties {
+		interface InputGroup extends ReactNative.ViewProps {
 			/**
              * Wraps the textbox with predefined border options.
              * Default: underline
@@ -595,7 +603,7 @@ declare module "native-base" {
 		/**
          * see Widget Input.js
          */
-		interface Input extends ReactNative.TextInputProperties {
+		interface Input extends ReactNative.TextInputProps {
 			label?: string;
 			/**
              * Label placed to the left of the input element.
@@ -617,13 +625,12 @@ declare module "native-base" {
 		/**
          * see Widget Textarea.js
          */
-		interface Textarea extends ReactNative.TextInputProperties {
-			bordered: boolean;
+		interface Textarea extends ReactNative.TextInputProps {
 			rowSpan: number;
 		}
 
 		interface Label {
-			style?: ReactNative.TextStyle;
+			style?: RnTextStyleProp;
 		}
 		/**
          * see Widget Icon.js
@@ -643,7 +650,7 @@ declare module "native-base" {
 		/**
          * see Widget Icon.js
          */
-		interface Thumbnail extends ReactNative.ImageProperties {
+		interface Thumbnail extends ReactNative.ImageProps {
 			/**
              * Dimension of thumbnail.
              * Default: 30
@@ -665,20 +672,20 @@ declare module "native-base" {
 		/**
          * see Widget Spinner.js
          */
-		interface Spinner extends ReactNative.ActivityIndicatorProperties {
+		interface Spinner extends ReactNative.ActivityIndicatorProps {
 			inverse?: boolean;
 		}
 		/**
          * see Widget CheckBox.js
          */
-		interface CheckBox extends ReactNative.TouchableOpacityProperties {
+		interface CheckBox extends ReactNative.TouchableOpacityProps{
 			checked?: boolean;
 			color?: string;
 		}
 		/**
          * see Widget CheckBox.js
          */
-		interface Radio extends ReactNative.TouchableOpacityProperties {
+		interface Radio extends ReactNative.TouchableOpacityProps {
 			selected?: boolean;
 			selectedColor?: string;
 		}
@@ -694,10 +701,10 @@ declare module "native-base" {
          * vendor react-native-drawer
          */
 		interface DrawerStyles {
-			drawer?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			main?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			drawerOverlay?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			mainOverlay?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			drawer?: RnViewStyleProp | Array<RnViewStyleProp>;
+			main?: RnViewStyleProp | Array<RnViewStyleProp>;
+			drawerOverlay?: RnViewStyleProp | Array<RnViewStyleProp>;
+			mainOverlay?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 		interface Drawer {
 			acceptDoubleTap?: boolean;
@@ -738,11 +745,11 @@ declare module "native-base" {
 			activeTextColor?: string;
 			inactiveTextColor?: string;
 			scrollOffset?: number;
-			style?: ReactNative.ViewStyle;
-			tabStyle?: ReactNative.ViewStyle;
-			tabsContainerStyle?: ReactNative.ViewStyle;
+			style?: RnViewStyleProp;
+			tabStyle?: RnViewStyleProp;
+			tabsContainerStyle?: RnViewStyleProp;
 			renderTab?: Function;
-			underlineStyle?: ReactNative.ViewStyle;
+			underlineStyle?: RnViewStyleProp;
 			onScroll?: Function;
 		}
 
@@ -759,29 +766,30 @@ declare module "native-base" {
 		  page?: number;
 			locked?: boolean;
 			initialPage?: number;
-			tabBarUnderlineStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			tabBarUnderlineStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
 			tabBarBackgroundColor?: string;
 			tabBarActiveTextColor?: string;
 			tabBarInactiveTextColor?: string;
-			tabBarTextStyle?: ReactNative.TextStyle;
-			tabContainerStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			tabBarTextStyle?: RnTextStyleProp;
+			tabContainerStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 			contentProps?: ReactNative.ScrollViewProperties;
+			prerenderingSiblingsNumber?: number;
 		}
 
 		interface Tab {
 			heading: React.ReactElement<TabHeading> | string;
-			tabStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			activeTabStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			textStyle?: ReactNative.TextStyle;
-			activeTextStyle?: ReactNative.TextStyle;
+			tabStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
+			activeTabStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
+			textStyle?: RnTextStyleProp;
+			activeTextStyle?: RnTextStyleProp;
 		}
 		interface TabHeading {
-			tabStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			activeTabStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
-			textStyle?: ReactNative.TextStyle;
-			activeTextStyle?: ReactNative.TextStyle;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			tabStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
+			activeTabStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
+			textStyle?: RnTextStyleProp;
+			activeTextStyle?: RnTextStyleProp;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		interface Item {
@@ -801,27 +809,27 @@ declare module "native-base" {
 			success?: boolean;
 			last?: boolean;
 			picker?: boolean;
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		interface Form {
-			style?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			style?: RnViewStyleProp | Array<RnViewStyleProp>;
 		}
 
 		interface Fab {
 			active?: boolean;
 			direction?: "down" | "up" | "left" | "right";
-			containerStyle?: ReactNative.ViewStyle | Array<ReactNative.ViewStyle>;
+			containerStyle?: RnViewStyleProp | Array<RnViewStyleProp>;
 			onPress?: () => void;
 			position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
-			style?: ReactNative.ViewStyle;
+			style?: RnViewStyleProp;
 		}
 
-		interface Image extends ReactNative.TextProperties { }
+		interface Image extends ReactNative.TextProps {}
 
-		interface Segment extends ReactNative.TextProperties { }
+		interface Segment extends ReactNative.TextProps {}
 
-		interface Root extends ReactNative.TextProperties { }
+		interface Root extends ReactNative.TextProps {}
 
 		interface StyleProvider {
 			style?: any;
@@ -844,21 +852,21 @@ declare module "native-base" {
 			left?: React.ReactElement<any>;
 			body?: React.ReactElement<any>;
 			right?: React.ReactElement<any>;
-			style?: ReactNative.ViewStyle;
+			style?: RnViewStyleProp;
 		}
 
 		interface Accordion {
 			dataArray: Array<any>;
-			headerStyle?: ReactNative.ViewStyle;
-			contentStyle?: ReactNative.ViewStyle;
+			headerStyle?: RnViewStyleProp;
+			contentStyle?: RnViewStyleProp;
 			renderHeader?: (item: any, expanded: boolean) => React.ReactElement<any>;
 			renderContent?: (item: any) => React.ReactElement<any>;
 			expanded?: number;
 			icon?: string;
 			expandedIcon?: string;
-			iconStyle?: ReactNative.TextStyle;
-			expandedIconStyle?: ReactNative.TextStyle;
-			style?: ReactNative.ViewStyle;
+			iconStyle?: RnTextStyleProp;
+			expandedIconStyle?: RnTextStyleProp;
+			style?: RnViewStyleProp;
 		}
 
 		interface DatePicker {
@@ -867,8 +875,8 @@ declare module "native-base" {
 			maximumDate?: Date;
 			locale?: string;
 			placeHolderText?: string;
-			textStyle?: ReactNative.TextStyle;
-			placeHolderTextStyle?: ReactNative.TextStyle;
+			textStyle?: RnTextStyleProp;
+			placeHolderTextStyle?: RnTextStyleProp;
 			androidMode?: "calendar" | "spinner" | "default";
 			timeZoneOffsetInMinutes?: number;
 			modalTransparent?: boolean;
@@ -974,7 +982,7 @@ declare module "native-base" {
      */
 	export class Picker extends React.Component<NativeBase.Picker, any> { }
 	namespace Picker {
-		export class Item extends React.Component<ReactNative.PickerItemProperties, any> { }
+		export class Item extends React.Component<ReactNative.PickerItemProps, any> {}
 	}
 	/**
      * NativeBase.List
@@ -1163,10 +1171,15 @@ declare module "native-base" {
 			type?: "danger" | "success" | "warning";
 			duration?: number;
 			onClose?: (reason: "user" | "timeout" | "functionCall") => any;
-			textStyle?: ReactNative.TextStyle;
-			buttonTextStyle?: ReactNative.TextStyle;
-			buttonStyle?: ReactNative.ViewStyle;
+			textStyle?: RnTextStyleProp;
+			buttonTextStyle?: RnTextStyleProp;
+			buttonStyle?: RnViewStyleProp;
 		}): void;
+		
+		/**
+		* Hides the currently visible toast
+		*/
+		public static hide(): void;
 	}
 
 	export class Accordion extends React.Component<NativeBase.Accordion, any>{ }
